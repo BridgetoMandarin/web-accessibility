@@ -1,23 +1,14 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", () =>
-  {
+{
+  // Create the mic button
   const micButton = document.createElement("button");
   micButton.id = "mic-button";
   micButton.textContent = "🎤";
-  micButton.style.position = "fixed";
-  micButton.style.bottom = "20px";
-  micButton.style.right = "20px";
-  micButton.style.zIndex = "9999";
-  micButton.style.padding = "12px";
-  micButton.style.borderRadius = "50%";
-  micButton.style.background = "#007bff";
-  micButton.style.color = "white";
-  micButton.style.border = "none";
-  micButton.style.cursor = "pointer";
-  micButton.style.fontSize = "20px";
   micButton.title = "Click to speak";
-  document.body.appendChild(micButton);
+
+  document.body.appendChild(micButton); 
 
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
@@ -99,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () =>
         console.log("Stopped due to inactivity.");
       }, 10000);
     } 
-    else 
+    else
     {
       recognition.stop();
       micButton.classList.remove("recording");
