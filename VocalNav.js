@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () =>
   // Create the mic button
   const micButton = document.createElement("button");
   micButton.id = "mic-button";
-  micButton.textContent = "🎤︎︎";
+  micButton.textContent = "🎤︎";
   micButton.title = "Click to speak";
 
   document.body.appendChild(micButton); 
