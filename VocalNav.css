@@ -1,0 +1,37 @@
+#mic-button
+{
+  position: fixed;        
+  bottom: 20px;     
+  right: 20px;            
+  z-index: 9999;
+ 
+  font-size: 2rem;
+  padding: 1rem 1.2rem;  
+  background: #fff;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#mic-button:hover
+{
+  background: #ddd;
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+#mic-button.recording
+{
+  background: #ff0000;
+  color: #fff;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse
+{
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
