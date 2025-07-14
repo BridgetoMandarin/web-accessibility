@@ -3,7 +3,6 @@
 
 document.addEventListener("DOMContentLoaded", () =>
 {
-  // Create the mic button
   const micButton = document.createElement("button");
   micButton.id = "mic-button";
   micButton.textContent = "🎤︎";
@@ -93,7 +92,7 @@ function resetInactivityTimer() {
     timeoutId = setTimeout(() => {
       console.log("Stopped due to 10 seconds of inactivity.");
       stopListening();
-    }, 10000); // 10 seconds
+    }, 10000);
   }
 
   function startListening() {
@@ -122,12 +121,12 @@ function resetInactivityTimer() {
   recognition.addEventListener("result", ev => {
     const transcript = ev.results[0][0].transcript.toLowerCase();
     executeCommand(transcript);
-    resetInactivityTimer(); // Continue listening after command
+    resetInactivityTimer();
   });
 
   recognition.addEventListener("end", () => {
     if (isRecognizing) {
-      recognition.start(); // Restart listening
+      recognition.start(); 
     }
   });
 
