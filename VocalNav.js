@@ -1,5 +1,5 @@
 "use strict";
-
+ 
 document.addEventListener("DOMContentLoaded", () =>
 {
   // Create the mic button
