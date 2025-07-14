@@ -1,26 +1,31 @@
-#mic-button
-{
-  position: fixed;        
-  bottom: 20px;     
-  right: 20px;            
+#mic-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
   z-index: 9999;
- 
+
   font-size: 2rem;
-  padding: 1rem 1.2rem;  
+  width: 60px;
+  height: 60px;
+
   background: #fff;
   border: none;
-  padding: 0.6rem 1rem;
   border-radius: 50%;
   cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-#mic-button:hover
-{
-  background: #ddd;
-  outline: 2px solid #fff;
-  outline-offset: 4px;
+#mic-icon {
+  font-size: 1.8rem;
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
 }
 
 #mic-button.recording

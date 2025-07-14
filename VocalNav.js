@@ -1,5 +1,6 @@
+
 "use strict";
- 
+
 document.addEventListener("DOMContentLoaded", () =>
 {
   // Create the mic button
@@ -30,10 +31,21 @@ document.addEventListener("DOMContentLoaded", () =>
   const commands =
   {
     // Scrolling
-    "down": () => window.scrollBy({ top: 500, behavior: "smooth" }),
-    "up": () => window.scrollBy({ top: -500, behavior: "smooth" }),
+
     "top": () => window.scrollTo({ top: 0, behavior: "smooth" }),
     "bottom": () => window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" }),
+    
+  // Scroll full page
+    "down full": () => window.scrollBy({ top: window.innerHeight, behavior: "smooth" }),
+    "up full": () => window.scrollBy({ top: -window.innerHeight, behavior: "smooth" }),
+
+  // Scroll half page
+    "down half": () => window.scrollBy({ top: window.innerHeight / 2, behavior: "smooth" }),
+    "up half": () => window.scrollBy({ top: -window.innerHeight / 2, behavior: "smooth" }),
+
+  // Scroll quarter page
+    "down quarter": () => window.scrollBy({ top: window.innerHeight / 4, behavior: "smooth" }),
+    "up quarter": () => window.scrollBy({ top: -window.innerHeight / 4, behavior: "smooth" }),
 
     // Navigation
     "home": () => window.location.href = "https://bridge-to-mandarin-6f6c1c.webflow.io/",
@@ -76,48 +88,51 @@ document.addEventListener("DOMContentLoaded", () =>
     console.log("No matching keyword found.");
   }
 
-  micButton.addEventListener("click", () =>
-  {
-    if (!isRecognizing)
-    {
-      recognition.start();
-      micButton.classList.add("recording");
-      isRecognizing = true;
+function resetInactivityTimer() {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      console.log("Stopped due to 10 seconds of inactivity.");
+      stopListening();
+    }, 10000); // 10 seconds
+  }
 
-      timeoutId = setTimeout(() =>
-      {
-        recognition.stop();
-        console.log("Stopped due to inactivity.");
-      }, 10000);
-    } 
-    else
-    {
-      recognition.stop();
-      micButton.classList.remove("recording");
-      isRecognizing = false;
-      clearTimeout(timeoutId);
+  function startListening() {
+    recognition.start();
+    micButton.classList.add("recording");
+    isRecognizing = true;
+    resetInactivityTimer();
+  }
+
+  function stopListening() {
+    recognition.stop();
+    micButton.classList.remove("recording");
+    isRecognizing = false;
+    clearTimeout(timeoutId);
+  }
+
+  micButton.addEventListener("click", () => {
+    if (!isRecognizing) {
+      startListening();
+    } else {
+      stopListening();
+      console.log("Stopped manually.");
     }
   });
 
-  recognition.addEventListener("result", ev =>
-  {
-    clearTimeout(timeoutId);
+  recognition.addEventListener("result", ev => {
     const transcript = ev.results[0][0].transcript.toLowerCase();
     executeCommand(transcript);
+    resetInactivityTimer(); // Continue listening after command
   });
 
-  recognition.addEventListener("end", () =>
-  {
-    micButton.classList.remove("recording");
-    isRecognizing = false;
-    clearTimeout(timeoutId);
+  recognition.addEventListener("end", () => {
+    if (isRecognizing) {
+      recognition.start(); // Restart listening
+    }
   });
 
-  recognition.addEventListener("error", ev =>
-  {
+  recognition.addEventListener("error", ev => {
     console.error("Speech error:", ev.error);
-    micButton.classList.remove("recording");
-    isRecognizing = false;
-    clearTimeout(timeoutId);
+    stopListening();
   });
 });
