@@ -30,8 +30,8 @@ document.addEventListener("DOMContentLoaded", () =>
   const commands =
   {
     // Scrolling
-    "down": () => window.scrollBy({ top: 300, behavior: "smooth" }),
-    "up": () => window.scrollBy({ top: -300, behavior: "smooth" }),
+    "down": () => window.scrollBy({ top: 500, behavior: "smooth" }),
+    "up": () => window.scrollBy({ top: -500, behavior: "smooth" }),
     "top": () => window.scrollTo({ top: 0, behavior: "smooth" }),
     "bottom": () => window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" }),
 
