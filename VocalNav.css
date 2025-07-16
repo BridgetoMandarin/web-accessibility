@@ -1,9 +1,79 @@
-#mic-button {
+/* Floating container for both buttons in the bottom-right corner */
+#vocalnav-buttons {
   position: fixed;
   bottom: 20px;
   right: 20px;
+  display: flex;
+  gap: 10px;
   z-index: 9999;
+  flex-direction: row;
+}
 
+/* Help button - default */
+#help-button
+{
+  padding: 12px 16px;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  background-color: #D16D29;  
+  color: white;             
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Help button - active/open */
+#help-button.active
+{
+  background-color: white;
+  color: black;
+}
+
+#help-button:hover
+{
+  opacity: 0.8;
+}
+
+/* Instructions box */
+#instructions-box {
+  position: absolute;
+  bottom: 100%; 
+  right: 0;
+  margin-bottom: 80px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  white-space: pre-line;
+  z-index: 9999;
+  display: none;
+  width: 400px;
+}
+
+#instructions-box::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  right: 125px; 
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 10px solid #f9f9f9; 
+}
+
+.instructions-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/* Mic button (circular style) */
+#mic-button {
   font-size: 2rem;
   width: 60px;
   height: 60px;
@@ -21,22 +91,20 @@
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-#mic-icon {
-  font-size: 1.8rem;
-  display: inline-block;
-  line-height: 1;
-  vertical-align: middle;
-}
-
-#mic-button.recording
-{
+/* Recording animation */
+#mic-button.recording {
   background: #ff0000;
   color: #fff;
   animation: pulse 1s infinite;
 }
 
-@keyframes pulse
+#mic-button:hover
 {
+  opacity: 0.8;
+}
+
+@keyframes pulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.1); }
 }
+
