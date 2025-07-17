@@ -1,7 +1,7 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", () =>
-  { // Create outer wrapper (fixed positioning)
+  { // Outer wrapper (fixed positioning)
   const buttonWrapper = document.createElement("div");
   buttonWrapper.style.position = "fixed";
   buttonWrapper.style.bottom = "20px";
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () =>
   buttonWrapper.style.flexDirection = "column";
   buttonWrapper.style.alignItems = "flex-end"; // aligns the box above button
 
-  // Create inner button container (row layout)
+  // Inner button container (row layout)
   const buttonContainer = document.createElement("div");
   buttonContainer.id = "vocalnav-buttons";
   buttonContainer.style.display = "flex";
@@ -29,11 +29,11 @@ document.addEventListener("DOMContentLoaded", () =>
   micButton.textContent = "🎤︎";
   micButton.title = "Click to speak";
 
-  // Add buttons to button container
+  // Adding buttons to button container
   buttonContainer.appendChild(helpButton);
   buttonContainer.appendChild(micButton);
 
-  // Create instructions box
+  // Creating instructions box
   const instructionsBox = document.createElement("div");
   instructionsBox.id = "instructions-box";
   instructionsBox.innerHTML = 
@@ -42,13 +42,14 @@ document.addEventListener("DOMContentLoaded", () =>
 
   - "Scroll down", "scroll up", "scroll half down", etc.
   - "Go to the top/bottom"
+  - "Zoom in/out"
   - "Home", "About", "Level 1", etc.
 
   To stop, say "stop" or click the microphone button again. It will automatically stop if no command is given after 10 seconds.
   
   Try it out now!`;
 
-  // Add toggle logic
+  // Adding toggle logic
   helpButton.addEventListener("click", () =>
   {
     const isHidden = instructionsBox.style.display === "none";
@@ -56,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () =>
     helpButton.classList.toggle("active", isHidden);
   });
 
-  // Append everything
+  // Appending everything
   buttonWrapper.appendChild(instructionsBox);
   buttonWrapper.appendChild(buttonContainer);
   document.body.appendChild(buttonWrapper);
@@ -80,8 +81,12 @@ document.addEventListener("DOMContentLoaded", () =>
 
   const commands =
   {
+    "zoom in": () => document.getElementById("increase-font")?.click(),
+    "zoom out": () => document.getElementById("decrease-font")?.click(),
+
     "how to use": () => helpButton.click(),
     "stop": () => stopListening(),
+  
     "top": () => window.scrollTo({ top: 0, behavior: "smooth" }),
     "bottom": () => window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" }),
     "down full": () => window.scrollBy({ top: window.innerHeight, behavior: "smooth" }),
@@ -90,11 +95,13 @@ document.addEventListener("DOMContentLoaded", () =>
     "up half": () => window.scrollBy({ top: -window.innerHeight / 2, behavior: "smooth" }),
     "down quarter": () => window.scrollBy({ top: window.innerHeight / 4, behavior: "smooth" }),
     "up quarter": () => window.scrollBy({ top: -window.innerHeight / 4, behavior: "smooth" }),
+    
     "home": () => window.location.href = "https://bridge-to-mandarin-6f6c1c.webflow.io/",
     "about": () => window.location.href = "https://bridge-to-mandarin-6f6c1c.webflow.io/about",
     "news and resources": () => window.location.href = "https://bridge-to-mandarin-6f6c1c.webflow.io/news-resources",
     "contact": () => window.location.href = "https://bridge-to-mandarin-6f6c1c.webflow.io/contact-us",
     "zoom": () => window.location.href = "https://calendly.com/bridgetomandarinus/30min",
+    
     "level 1": () => window.location.href = "https://bridge-to-mandarin-6f6c1c.webflow.io/level-1",
     "level 2": () => window.location.href = "https://bridge-to-mandarin-6f6c1c.webflow.io/level-2",
     "level 3": () => window.location.href = "https://bridge-to-mandarin-6f6c1c.webflow.io/level-3",

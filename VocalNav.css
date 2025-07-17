@@ -57,7 +57,7 @@
   content: "";
   position: absolute;
   bottom: -10px;
-  right: 125px; 
+  right: 105px; 
   width: 0;
   height: 0;
   border-left: 8px solid transparent;
@@ -72,7 +72,7 @@
   margin-bottom: 10px;
 }
 
-/* Mic button (circular style) */
+/* Mic button */
 #mic-button {
   font-size: 1.7rem;
   width: 51px;
@@ -91,7 +91,6 @@
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Recording animation */
 #mic-button.recording {
   background: #ff0000;
   color: #fff;

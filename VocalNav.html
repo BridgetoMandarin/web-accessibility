@@ -1,5 +1,3 @@
-<!-- -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,9 +5,12 @@
   <title>Voice Navigation</title>
   <link rel="stylesheet" href="VocalNav.css">
   <script src="VocalNav.js" defer></script>
-
+  <link rel="stylesheet" href="FontSizeToggle.css">
+  <script src="FontSizeToggle.js" defer></script>
 </head>
+
 <body>
+  <div id="content">
   <main>
     <section id = "home">
       <h1>Voice Navigation Test Page</h1>
@@ -241,10 +242,13 @@
     </section>
 
   </main>
+  </div>
 
-  <!--<button id="mic-button" aria-label="Activate voice commands" title="Click to speak">🎤︎</button> -->
+  <div id="font-size-toggle">
+    <button id="decrease-font">−</button>
+    <span id="font-size-display">100%</span>
+    <button id="increase-font">+</button>
+  </div>
 
 </body>
 </html>
-
-<!-- -->
