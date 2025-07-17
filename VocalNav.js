@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () =>
   - "Go to the top/bottom"
   - "Home", "About", "Level 1", etc.
 
-  Click the microphone button again to stop. It will automatically stop if no command is given after 10 seconds.
+  To stop, say "stop" or click the microphone button again. It will automatically stop if no command is given after 10 seconds.
   
   Try it out now!`;
 
@@ -81,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () =>
   const commands =
   {
     "how to use": () => helpButton.click(),
+    "stop": () => stopListening(),
     "top": () => window.scrollTo({ top: 0, behavior: "smooth" }),
     "bottom": () => window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" }),
     "down full": () => window.scrollBy({ top: window.innerHeight, behavior: "smooth" }),

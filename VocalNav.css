@@ -12,8 +12,8 @@
 /* Help button - default */
 #help-button
 {
-  padding: 12px 16px;
-  font-size: 18px;
+  padding: 10.2px 13.6px;
+  font-size: 15.3px;
   border: none;
   border-radius: 10px;
   background-color: #D16D29;  
@@ -74,9 +74,9 @@
 
 /* Mic button (circular style) */
 #mic-button {
-  font-size: 2rem;
-  width: 60px;
-  height: 60px;
+  font-size: 1.7rem;
+  width: 51px;
+  height: 51px;
 
   background: #fff;
   border: none;
@@ -107,4 +107,3 @@
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.1); }
 }
-
