@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () =>
   buttonWrapper.style.zIndex = "9999";
   buttonWrapper.style.display = "flex";
   buttonWrapper.style.flexDirection = "column";
-  buttonWrapper.style.alignItems = "flex-end"; // aligns the box above button
+  buttonWrapper.style.alignItems = "flex-end";
 
   // Inner button container (row layout)
   const buttonContainer = document.createElement("div");
@@ -29,11 +29,11 @@ document.addEventListener("DOMContentLoaded", () =>
   micButton.textContent = "🎤︎";
   micButton.title = "Click to speak";
 
-  // Adding buttons to button container
+  // Adds buttons to button container
   buttonContainer.appendChild(helpButton);
   buttonContainer.appendChild(micButton);
 
-  // Creating instructions box
+  // Creates instructions box
   const instructionsBox = document.createElement("div");
   instructionsBox.id = "instructions-box";
   instructionsBox.innerHTML = 
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () =>
   
   Try it out now!`;
 
-  // Adding toggle logic
+  // Adds toggle logic
   helpButton.addEventListener("click", () =>
   {
     const isHidden = instructionsBox.style.display === "none";
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () =>
     helpButton.classList.toggle("active", isHidden);
   });
 
-  // Appending everything
+  // Appends everything
   buttonWrapper.appendChild(instructionsBox);
   buttonWrapper.appendChild(buttonContainer);
   document.body.appendChild(buttonWrapper);

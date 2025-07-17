@@ -29,3 +29,8 @@
   border-radius: 2px;
   cursor: pointer;
 }
+
+#font-content-wrapper
+{
+    width: 100%;
+}
