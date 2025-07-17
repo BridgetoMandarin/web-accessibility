@@ -96,16 +96,16 @@ document.addEventListener("DOMContentLoaded", () =>
     "down quarter": () => window.scrollBy({ top: window.innerHeight / 4, behavior: "smooth" }),
     "up quarter": () => window.scrollBy({ top: -window.innerHeight / 4, behavior: "smooth" }),
     
-    "home": () => window.location.href = "https://bridge-to-mandarin-6f6c1c.webflow.io/",
-    "about": () => window.location.href = "https://bridge-to-mandarin-6f6c1c.webflow.io/about",
-    "news and resources": () => window.location.href = "https://bridge-to-mandarin-6f6c1c.webflow.io/news-resources",
-    "contact": () => window.location.href = "https://bridge-to-mandarin-6f6c1c.webflow.io/contact-us",
+    "home": () => window.location.href = "https://bridge2mandarin.webflow.io/",
+    "about": () => window.location.href = "https://bridge2mandarin.webflow.io/about",
+    "news and resources": () => window.location.href = "https://bridge2mandarin.webflow.io/news-resources",
+    "contact": () => window.location.href = "https://bridge2mandarin.webflow.io/contact-us",
     "zoom": () => window.location.href = "https://calendly.com/bridgetomandarinus/30min",
     
-    "level 1": () => window.location.href = "https://bridge-to-mandarin-6f6c1c.webflow.io/level-1",
-    "level 2": () => window.location.href = "https://bridge-to-mandarin-6f6c1c.webflow.io/level-2",
-    "level 3": () => window.location.href = "https://bridge-to-mandarin-6f6c1c.webflow.io/level-3",
-    "level 4": () => window.location.href = "https://bridge-to-mandarin-6f6c1c.webflow.io/level-4"
+    "level 1": () => window.location.href = "https://bridge2mandarin.webflow.io/level-1",
+    "level 2": () => window.location.href = "https://bridge2mandarin.webflow.io/level-2",
+    "level 3": () => window.location.href = "https://bridge2mandarin.webflow.io/level-3",
+    "level 4": () => window.location.href = "https://bridge2mandarin.webflow.io/level-4"
   };
 
   function normalizeNumbers(text)
