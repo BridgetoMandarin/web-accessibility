@@ -13,12 +13,12 @@
 /* Help button - default */
 #help-button
 {
-  padding: 15.3px 20.4px; /* 150% of original */
-  font-size: 23px;
+  padding: 8px 15px; /* 150% of original */
+  font-size: 20px;
   
   border: none;
   border-radius: 10px;
-  background-color: #D16D29;  
+  background-color: #d16d29;  
   color: white;             
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -80,8 +80,8 @@
 #mic-button
 {
   font-size: 2.55rem;
-  width: 76.5px;
-  height: 76.5px;  
+  width: 70px;
+  height: 70px;  
 
   background: #fff;
   border: none;
@@ -105,8 +105,9 @@
 
 #mic-button:hover
 {
-  opacity: 0.7;
+  opacity: 0.8;
 }
+
 
 @keyframes pulse
 {
