@@ -3,39 +3,48 @@
     position: fixed;
     bottom: 20px;
     left: 20px;
-
+  
     display: flex;
     align-items: center;
-
-    gap: 10px; 
-
+    gap: 10px;
+  
     background-color: #ffffff;
     padding: 5px 15px;
-    border-radius: 15px; 
+    border-radius: 15px;
     box-shadow: 0 2.5px 10px rgba(0, 0, 0, 0.2);
-
+  
     z-index: 9999;
-    font-size: 1.75rem; 
-}
-
-#increase-font,
-#decrease-font
-{
-  font-size: 1.75rem;
-  width: 40px;
-  height: 40px;
-  border: none;
-  background-color: #ffffff;
-  border-radius: 2px;
-  cursor: pointer;
-}
-
-#font-content-wrapper
-{
+    font-size: 2rem;
+  
+    transform-origin: bottom left;
+  }
+  
+  #increase-font,
+  #decrease-font
+  {
+    font-size: 3rem;
+    width: 60px;
+    height: 60px;
+    
+    border: none;
+    background-color: #ffffff;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: opacity 0.2s ease-in-out;
+  }
+  
+  #increase-font:hover,
+  #decrease-font:hover
+  {
+    opacity: 0.4;
+  }
+  
+  #font-content-wrapper
+  {
     width: 100%;
-}
-
-html
-{
+  }
+  
+  html
+  {
     transition: zoom 0.3s ease-in-out;
-}  
+  }  

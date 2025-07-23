@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () =>
 
   - "Scroll down", "scroll up", "scroll half down", etc.
   - "Go to the top/bottom"
-  - "Zoom in/out"
+  - "Zoom in/out, 50%, 150%, etc."
   - "Home", "About", "Level 1", etc.
 
   To stop, say "stop" or click the microphone button again. It will automatically stop if no command is given after 10 seconds.
@@ -169,6 +169,17 @@ document.addEventListener("DOMContentLoaded", () =>
     }
 
     console.log("No matching command found.");
+
+    const matchZoom = normalized.match(/(\d{2,3})\s*%/);
+    if (matchZoom) {
+      const zoomValue = parseInt(matchZoom[1]);
+      if (!isNaN(zoomValue)) {
+        console.log(`Setting zoom to ${zoomValue}%`);
+        window.setZoomLevel?.(zoomValue);
+        return;
+      }
+    }
+
   }
 
   function resetInactivityTimer()
