@@ -1,3 +1,4 @@
+/*
 let currentZoom = 1.0;
 const minZoom = 0.5;
 const maxZoom = 3.0;
@@ -96,3 +97,4 @@ window.setZoomLevel = function (percent) {
   currentZoom = newZoom;
   applyZoom();
 };
+*/

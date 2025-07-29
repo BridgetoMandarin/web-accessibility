@@ -1,5 +1,15 @@
 "use strict";
 
+// Global zoom setter (used by VocalNav and Drop-Up Menu)
+window.setZoomLevel = function (percent)
+{
+  const clamped = Math.max(50, Math.min(300, percent));
+  document.body.style.zoom = `${clamped}%`;
+  
+  const zoomDisplay = document.getElementById("font-size-button");
+  if (zoomDisplay) zoomDisplay.textContent = `${clamped}%`;
+};
+
 document.addEventListener("DOMContentLoaded", () =>
   { // Outer wrapper (fixed positioning)
   const buttonWrapper = document.createElement("div");
@@ -38,12 +48,13 @@ document.addEventListener("DOMContentLoaded", () =>
   instructionsBox.id = "instructions-box";
   instructionsBox.innerHTML = 
   `<div class="instructions-title">Vocal Navigation Guide</div>
-  Welcome to Bridge to Mandarin! This is a short guide to our Vocal Navigation feature. Press the microphone button to say a variety of commands for scrolling and navigation, such as:
+  Welcome to JaxConnect! This is a short guide to our Vocal Navigation feature. Press the microphone button to say a variety of commands for scrolling and navigation, such as:
 
   - "Scroll down", "scroll up", "scroll half down", etc.
   - "Go to the top/bottom"
   - "Zoom in/out, 50%, 150%, etc."
-  - "Home", "About", "Level 1", etc.
+  - "Home", "About", "Products", etc.
+  - "AmTryke Cycles", "EazyHold", etc.
 
   To stop, say "stop" or click the microphone button again. It will automatically stop if no command is given after 10 seconds.
   
@@ -60,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () =>
   // Appends everything
   buttonWrapper.appendChild(instructionsBox);
   buttonWrapper.appendChild(buttonContainer);
-  document.body.appendChild(buttonWrapper);
+  document.documentElement.appendChild(buttonWrapper);
 
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
@@ -81,8 +92,29 @@ document.addEventListener("DOMContentLoaded", () =>
 
   const commands =
   {
-    "zoom in": () => document.getElementById("increase-font")?.click(),
-    "zoom out": () => document.getElementById("decrease-font")?.click(),
+    /* 
+    Scrolling
+    */
+    
+    "zoom in": () =>
+    {
+      const zoomLevels = [50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300];
+      const current = parseInt(document.body.style.zoom) || 100;
+      const currentIndex = zoomLevels.findIndex(z => z === current);
+      const nextIndex = Math.min(currentIndex + 1, zoomLevels.length - 1);
+      const nextZoom = zoomLevels[nextIndex];
+      window.setZoomLevel(nextZoom);
+    },
+
+    "zoom out": () =>
+    {
+      const zoomLevels = [50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300];
+      const current = parseInt(document.body.style.zoom) || 100;
+      const currentIndex = zoomLevels.findIndex(z => z === current);
+      const prevIndex = Math.max(currentIndex - 1, 0);
+      const prevZoom = zoomLevels[prevIndex];
+      window.setZoomLevel(prevZoom);
+    },
 
     "how to use": () => helpButton.click(),
     "stop": () => stopListening(),
@@ -96,16 +128,37 @@ document.addEventListener("DOMContentLoaded", () =>
     "down quarter": () => window.scrollBy({ top: window.innerHeight / 4, behavior: "smooth" }),
     "up quarter": () => window.scrollBy({ top: -window.innerHeight / 4, behavior: "smooth" }),
     
-    "home": () => window.location.href = "https://bridge2mandarin.webflow.io/",
-    "about": () => window.location.href = "https://bridge2mandarin.webflow.io/about",
-    "news and resources": () => window.location.href = "https://bridge2mandarin.webflow.io/news-resources",
-    "contact": () => window.location.href = "https://bridge2mandarin.webflow.io/contact-us",
-    "zoom": () => window.location.href = "https://calendly.com/bridgetomandarinus/30min",
+    /* 
+    Navigation
+    */
+
+    /* 
+    "menu": () => click or something
+    */
+
+    "home": () => window.location.href = "https://www.jaxconnect.org/",
+    "about": () => window.location.href = "https://www.jaxconnect.org/about",
+    "products": () => window.location.href = "https://www.jaxconnect.org/products?category=all+products",
+    "join us": () => window.location.href = "https://bridge2mandarin.webflow.io/contact-us",
+    "resources": () => window.location.href = "https://calendly.com/bridgetomandarinus/30min",
     
-    "level 1": () => window.location.href = "https://bridge2mandarin.webflow.io/level-1",
-    "level 2": () => window.location.href = "https://bridge2mandarin.webflow.io/level-2",
-    "level 3": () => window.location.href = "https://bridge2mandarin.webflow.io/level-3",
-    "level 4": () => window.location.href = "https://bridge2mandarin.webflow.io/level-4"
+    /* chinese language option? maybe for future intern */
+
+    /* 
+    Products
+    */
+
+    "all products": () => window.location.href = "https://www.jaxconnect.org/products?category=all+products",
+    "day to day life": () => window.location.href = "https://www.jaxconnect.org/products?category=Day-to-day+life",
+    "college": () => window.location.href = "https://www.jaxconnect.org/products?category=college",
+    "mobility": () => window.location.href = "https://www.jaxconnect.org/products?category=mobility",
+    "other": () => window.location.href = "https://www.jaxconnect.org/products?category=other",
+
+    /* Use product numbering system instead of using long product name */
+
+    "AmTryke Cycles": () => window.location.href = "https://amtryke.org/",
+    /* "Product: () => window.location.href = "",
+    "Product: () => window.location.href = "", */
   };
 
   function normalizeNumbers(text)
