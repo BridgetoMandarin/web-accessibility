@@ -139,8 +139,8 @@ document.addEventListener("DOMContentLoaded", () =>
     "home": () => window.location.href = "https://www.jaxconnect.org/",
     "about": () => window.location.href = "https://www.jaxconnect.org/about",
     "products": () => window.location.href = "https://www.jaxconnect.org/products?category=all+products",
-    "join us": () => window.location.href = "https://bridge2mandarin.webflow.io/contact-us",
-    "resources": () => window.location.href = "https://calendly.com/bridgetomandarinus/30min",
+    "join us": () => window.location.href = "https://www.jaxconnect.org/join-our-mission",
+    "resources": () => window.location.href = "https://www.jaxconnect.org/resources",
 
     /* 
     Products

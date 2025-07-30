@@ -1,18 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Create landmark elements
-  const main = document.createElement("main");
-  main.id = "main-content";
+  const wrapper = document.createElement("div");
+  wrapper.id = "content-wrapper";
 
-  const nav = document.createElement("nav");
-  nav.setAttribute("aria-label", "Font Size Navigation");
-
-  // Wrap existing body content inside <main>
   while (document.body.firstChild) {
-    main.appendChild(document.body.firstChild);
+    wrapper.appendChild(document.body.firstChild);
   }
-  document.body.appendChild(main);
+  document.body.appendChild(wrapper);
 
-  // Create Font Size Menu structure inside <nav>
+  // Create HTML structure
   const menu = document.createElement("div");
   menu.id = "font-size-menu";
 
@@ -50,24 +45,22 @@ document.addEventListener("DOMContentLoaded", () => {
     options.classList.remove("show");
   });
 
-  // Append Font Size Menu to <nav>
+  // Append to DOM
   menu.appendChild(button);
   menu.appendChild(options);
-  nav.appendChild(menu);
-  document.body.appendChild(nav);
+  document.documentElement.appendChild(menu);
 
-  // Define zoom function
   window.setZoomLevel = function (percent) {
     const clamped = Math.max(50, Math.min(300, percent));
     button.textContent = `${clamped}%`;
-
+  
     // Remove previous scale-based zoom
-    main.style.transform = '';
-    main.style.transformOrigin = '';
-
+    wrapper.style.transform = '';
+    wrapper.style.transformOrigin = '';
+  
     // Use zoom instead
-    main.style.zoom = `${clamped}%`;
-
+    wrapper.style.zoom = `${clamped}%`;
+  
     // Update checkmarks
     document.querySelectorAll("#font-size-options li").forEach(li => {
       const checkmark = li.querySelector(".checkmark");
@@ -77,8 +70,8 @@ document.addEventListener("DOMContentLoaded", () => {
         checkmark.classList.add("hidden");
       }
     });
-  };
+  };   
 
-  // Initialize zoom level
+  // Initialize
   window.setZoomLevel(100);
 });
