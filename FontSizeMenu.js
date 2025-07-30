@@ -1,4 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Wrap body content inside a scalable container
+  const wrapper = document.createElement("div");
+  wrapper.id = "content-wrapper";
+
+  // Move all children of body into the wrapper
+  while (document.body.firstChild) {
+    wrapper.appendChild(document.body.firstChild);
+  }
+  document.body.appendChild(wrapper);
+
   // Create HTML structure
   const menu = document.createElement("div");
   menu.id = "font-size-menu";
@@ -48,13 +58,13 @@ document.addEventListener("DOMContentLoaded", () => {
     button.textContent = `${clamped}%`;
 
     // Apply transform scaling
-    document.body.style.transform = `scale(${clamped / 100})`;
-    document.body.style.transformOrigin = 'top left';
+      wrapper.style.transform = `scale(${clamped / 100})`;
+      wrapper.style.transformOrigin = 'top left';
 
     // Adjust layout for scroll
-    document.documentElement.style.width = `${100 / (clamped / 100)}%`;
-    document.documentElement.style.overflowX = 'auto';
-
+      wrapper.style.width = `${100 / (clamped / 100)}%`;
+      wrapper.style.overflow = 'auto';
+    
     // Update checkmarks
     document.querySelectorAll("#font-size-options li").forEach(li => {
       const checkmark = li.querySelector(".checkmark");
