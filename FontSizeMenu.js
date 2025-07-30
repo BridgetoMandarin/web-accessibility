@@ -48,11 +48,34 @@ document.addEventListener("DOMContentLoaded", () =>
     document.documentElement.appendChild(menu);
 
     // Make global zoom setter (if not already defined)
-    window.setZoomLevel = function (percent) {
+    window.setZoomLevel = function (percent)
+    {
       const clamped = Math.max(50, Math.min(300, percent));
-      document.body.style.zoom = `${clamped}%`;
       button.textContent = `${clamped}%`;
-  
+    
+      // Apply scale transform instead of zoom
+      document.body.style.transform = `scale(${clamped / 100})`;
+      document.body.style.transformOrigin = 'top left';
+    
+      // Adjust width and height to allow scrolling if needed
+      document.documentElement.style.width = `${100 / (clamped / 100)}%`;
+      document.documentElement.style.overflowX = 'auto';
+    
+      // Update checkmarks
+      document.querySelectorAll("#font-size-options li").forEach(li =>
+      {
+        const checkmark = li.querySelector(".checkmark");
+        if (parseInt(li.getAttribute("data-size")) === clamped)
+        {
+          checkmark.classList.remove("hidden");
+        }
+        else
+        {
+          checkmark.classList.add("hidden");
+        }
+      });
+    };
+    
       // Update checkmarks
       document.querySelectorAll("#font-size-options li").forEach(li =>
       {
