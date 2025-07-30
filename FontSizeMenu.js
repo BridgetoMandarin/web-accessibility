@@ -1,7 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Wrap body content inside a scalable container
   const wrapper = document.createElement("div");
   wrapper.id = "content-wrapper";
 
+  // Move all children of body into the wrapper
   while (document.body.firstChild) {
     wrapper.appendChild(document.body.firstChild);
   }
