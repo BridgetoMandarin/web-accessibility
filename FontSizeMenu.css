@@ -46,6 +46,11 @@
     display: flex;
   }
   
+  #font-size-button:hover
+  {
+    opacity: 0.8;
+  }
+
   #font-size-options li
   {
     padding: 8px 12px;

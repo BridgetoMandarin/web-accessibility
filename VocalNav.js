@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () =>
   - "Go to the top/bottom"
   - "Zoom in/out, 50%, 150%, etc."
   - "Home", "About", "Products", etc.
-  - "AmTryke Cycles", "EazyHold", etc.
+  - "All Products", "Day-to-Day Life", etc.
 
   To stop, say "stop" or click the microphone button again. It will automatically stop if no command is given after 10 seconds.
   
@@ -141,8 +141,6 @@ document.addEventListener("DOMContentLoaded", () =>
     "products": () => window.location.href = "https://www.jaxconnect.org/products?category=all+products",
     "join us": () => window.location.href = "https://bridge2mandarin.webflow.io/contact-us",
     "resources": () => window.location.href = "https://calendly.com/bridgetomandarinus/30min",
-    
-    /* chinese language option? maybe for future intern */
 
     /* 
     Products
@@ -153,12 +151,6 @@ document.addEventListener("DOMContentLoaded", () =>
     "college": () => window.location.href = "https://www.jaxconnect.org/products?category=college",
     "mobility": () => window.location.href = "https://www.jaxconnect.org/products?category=mobility",
     "other": () => window.location.href = "https://www.jaxconnect.org/products?category=other",
-
-    /* Use product numbering system instead of using long product name */
-
-    "AmTryke Cycles": () => window.location.href = "https://amtryke.org/",
-    /* "Product: () => window.location.href = "",
-    "Product: () => window.location.href = "", */
   };
 
   function normalizeNumbers(text)
