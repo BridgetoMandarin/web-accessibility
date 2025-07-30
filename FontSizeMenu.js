@@ -1,15 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Wrap body content inside a scalable container
-  const wrapper = document.createElement("div");
-  wrapper.id = "content-wrapper";
+  // Create landmark elements
+  const main = document.createElement("main");
+  main.id = "main-content";
 
-  // Move all children of body into the wrapper
+  const nav = document.createElement("nav");
+  nav.setAttribute("aria-label", "Font Size Navigation");
+
+  // Wrap existing body content inside <main>
   while (document.body.firstChild) {
-    wrapper.appendChild(document.body.firstChild);
+    main.appendChild(document.body.firstChild);
   }
-  document.body.appendChild(wrapper);
+  document.body.appendChild(main);
 
-  // Create HTML structure
+  // Create Font Size Menu structure inside <nav>
   const menu = document.createElement("div");
   menu.id = "font-size-menu";
 
@@ -47,22 +50,24 @@ document.addEventListener("DOMContentLoaded", () => {
     options.classList.remove("show");
   });
 
-  // Append to DOM
+  // Append Font Size Menu to <nav>
   menu.appendChild(button);
   menu.appendChild(options);
-  document.documentElement.appendChild(menu);
+  nav.appendChild(menu);
+  document.body.appendChild(nav);
 
+  // Define zoom function
   window.setZoomLevel = function (percent) {
     const clamped = Math.max(50, Math.min(300, percent));
     button.textContent = `${clamped}%`;
-  
+
     // Remove previous scale-based zoom
-    wrapper.style.transform = '';
-    wrapper.style.transformOrigin = '';
-  
+    main.style.transform = '';
+    main.style.transformOrigin = '';
+
     // Use zoom instead
-    wrapper.style.zoom = `${clamped}%`;
-  
+    main.style.zoom = `${clamped}%`;
+
     // Update checkmarks
     document.querySelectorAll("#font-size-options li").forEach(li => {
       const checkmark = li.querySelector(".checkmark");
@@ -72,8 +77,8 @@ document.addEventListener("DOMContentLoaded", () => {
         checkmark.classList.add("hidden");
       }
     });
-  };   
+  };
 
-  // Initialize
+  // Initialize zoom level
   window.setZoomLevel(100);
 });
