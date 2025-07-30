@@ -52,29 +52,16 @@ document.addEventListener("DOMContentLoaded", () => {
   menu.appendChild(options);
   document.documentElement.appendChild(menu);
 
-  // Define zoom logic
   window.setZoomLevel = function (percent) {
     const clamped = Math.max(50, Math.min(300, percent));
     button.textContent = `${clamped}%`;
   
-    // Calculate scale
-    const scale = clamped / 100;
+    // Remove previous scale-based zoom
+    wrapper.style.transform = '';
+    wrapper.style.transformOrigin = '';
   
-    // Apply transform scaling
-    wrapper.style.transform = `scale(${scale})`;
-    wrapper.style.transformOrigin = 'top left';
-  
-    // Adjust wrapper size so that full scaled content is within scroll bounds
-    wrapper.style.width = `${100 / scale}%`;
-    wrapper.style.height = `${100 / scale}%`; // ensure height is not cut off
-    wrapper.style.position = 'absolute';      // allow shifting origin
-    wrapper.style.top = '0';
-    wrapper.style.left = '0';
-  
-    // Ensure full-page scroll
-    document.body.style.overflow = 'auto';
-    document.documentElement.style.overflow = 'auto';
-    window.scrollTo(0, 0);
+    // Use zoom instead
+    wrapper.style.zoom = `${clamped}%`;
   
     // Update checkmarks
     document.querySelectorAll("#font-size-options li").forEach(li => {
@@ -85,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
         checkmark.classList.add("hidden");
       }
     });
-  };  
+  };   
 
   // Initialize
   window.setZoomLevel(100);
