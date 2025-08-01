@@ -101,7 +101,8 @@ document.addEventListener("DOMContentLoaded", () =>
     "news and resources": () => window.location.href = "https://bridge2mandarin.webflow.io/news-resources",
     "contact": () => window.location.href = "https://bridge2mandarin.webflow.io/contact-us",
     "zoom": () => window.location.href = "https://calendly.com/bridgetomandarinus/30min",
-    
+
+    "dashboard": () => window.location.href = "https://bridge2mandarin.webflow.io/dashboard-student",
     "level 1": () => window.location.href = "https://bridge2mandarin.webflow.io/level-1",
     "level 2": () => window.location.href = "https://bridge2mandarin.webflow.io/level-2",
     "level 3": () => window.location.href = "https://bridge2mandarin.webflow.io/level-3",
