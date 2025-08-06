@@ -86,6 +86,7 @@ document.addEventListener("DOMContentLoaded", () =>
   let timeoutId = null;
 
   const recognition = new SpeechRecognition();
+  recognition.continuous = true;
   recognition.lang = "en-US";
   recognition.interimResults = false;
   recognition.maxAlternatives = 1;
@@ -277,7 +278,9 @@ document.addEventListener("DOMContentLoaded", () =>
   {
     if (isRecognizing)
     {
+      console.log("Recognition ended, restarting...");
       recognition.start();
+      resetInactivityTimer(); // reset your 30-second countdown
     }
   });
 
