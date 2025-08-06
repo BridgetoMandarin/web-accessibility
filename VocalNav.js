@@ -234,7 +234,7 @@ document.addEventListener("DOMContentLoaded", () =>
     {
       console.log("Stopped due to 30 seconds of inactivity.");
       stopListening();
-    }, 10000);
+    }, 30000);
   }
 
   function startListening()
