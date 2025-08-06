@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () =>
   - "Home", "About", "Products", etc.
   - "All Products", "Day-to-Day Life", etc.
 
-  To stop, say "stop" or click the microphone button again. It will automatically stop if no command is given after 10 seconds.
+  To stop, say "stop" or click the microphone button again. It will automatically stop if no command is given after 30 seconds.
   
   Try it out now!`;
 
@@ -232,7 +232,7 @@ document.addEventListener("DOMContentLoaded", () =>
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() =>
     {
-      console.log("Stopped due to 10 seconds of inactivity.");
+      console.log("Stopped due to 30 seconds of inactivity.");
       stopListening();
     }, 10000);
   }
