@@ -84,6 +84,7 @@ document.addEventListener("DOMContentLoaded", () =>
 
   let isRecognizing = false;
   let timeoutId = null;
+  let lastHeardTime = null;
 
   const recognition = new SpeechRecognition();
   recognition.continuous = true;
@@ -228,22 +229,22 @@ document.addEventListener("DOMContentLoaded", () =>
 
   }
 
-  function resetInactivityTimer()
-  {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() =>
-    {
-      console.log("Stopped due to 30 seconds of inactivity.");
-      stopListening();
-    }, 30000);
-  }
-
   function startListening()
   {
     recognition.start();
     micButton.classList.add("recording");
     isRecognizing = true;
-    resetInactivityTimer();
+    lastHeardTime = Date.now();
+
+    clearInterval(timeoutId);
+    timeoutId = setInterval(() =>
+    {
+      if (Date.now() - lastHeardTime > 30000)
+      {
+        console.log("Stopped due to 30 seconds of inactivity.");
+        stopListening();
+      }
+    }, 1000);
   }
 
   function stopListening()
@@ -251,7 +252,8 @@ document.addEventListener("DOMContentLoaded", () =>
     recognition.stop();
     micButton.classList.remove("recording");
     isRecognizing = false;
-    clearTimeout(timeoutId);
+    clearInterval(timeoutId);
+    timeoutId = null;
   }
 
   micButton.addEventListener("click", () =>
@@ -271,22 +273,33 @@ document.addEventListener("DOMContentLoaded", () =>
   {
     const transcript = ev.results[0][0].transcript.toLowerCase();
     executeCommand(transcript);
-    resetInactivityTimer();
+    lastHeardTime = Date.now();
   });
 
-  recognition.addEventListener("end", () =>
-  {
-    if (isRecognizing)
-    {
-      console.log("Recognition ended, restarting...");
-      recognition.start();
-      resetInactivityTimer(); // reset your 30-second countdown
+  recognition.addEventListener("end", () => {
+    if (isRecognizing) {
+      console.log("Recognition ended (likely timeout) — restarting...");
+      try {
+        recognition.start(); // Restart right away
+      } catch (err) {
+        console.error("Recognition restart failed:", err);
+      }
     }
-  });
-
-  recognition.addEventListener("error", ev =>
-  {
-    console.error("Speech error:", ev.error);
-    stopListening();
-  });
-});
+  });  
+  
+  recognition.addEventListener("error", (ev) => {
+    console.error("SpeechRecognition error:", ev.error);
+    if (ev.error === "no-speech" || ev.error === "network") {
+      // Restart on safe errors
+      if (isRecognizing) {
+        try {
+          recognition.start();
+          lastHeardTime = Date.now();
+        } catch (err) {
+          console.error("Error restarting after speech error:", err);
+        }
+      }
+    } else {
+      stopListening(); // Other errors, stop entirely
+    }
+  })});
